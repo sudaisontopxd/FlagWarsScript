@@ -1,0 +1,599 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local Window = Rayfield:CreateWindow({
+   Name = "❤️ Flag Wars! [EVENT] | Made By Sudais",
+   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+   LoadingTitle = "UpdatedVersion",
+   LoadingSubtitle = "by SUDAISxCHEATS",
+   Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+
+   DisableRayfieldPrompts = false,
+   DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
+
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = "Big Hub"
+   },
+
+   Discord = {
+      Enabled = true, -- Prompt the user to join your Discord server if their executor supports it
+      Invite = "discord.gg/C7x7USwmHK", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ ABCD would be ABCD
+      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+   },
+
+   KeySystem = false, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "Untitled",
+      Subtitle = "Key System",
+      Note = "No method of obtaining the key is provided", -- Use this to tell the user how to get a key
+      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+   }
+})
+local Tab = Window:CreateTab("Main", 4483362458) -- Title, Image
+Rayfield:Notify({
+   Title = "Dont Forget To",
+   Content = "Make Sure To Subcribe SudaisXCheats On Youtube",
+   Duration = 6.5,
+   Image = 4483362458,
+})
+local Button = Tab:CreateButton({
+   Name = "Silent Aim",
+   Callback = function()
+   --[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+-- leave a like pls
+
+
+_G.HeadSize = 20
+_G.Disabled = true
+ 
+game:GetService('RunService').RenderStepped:connect(function()
+if _G.Disabled then
+for i,v in next, game:GetService('Players'):GetPlayers() do
+if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+pcall(function()
+v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize,_G.HeadSize,_G.HeadSize)
+v.Character.HumanoidRootPart.Transparency = 0.7
+v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really blue")
+v.Character.HumanoidRootPart.Material = "Neon"
+v.Character.HumanoidRootPart.CanCollide = false
+end)
+end
+end
+end
+end)
+   -- The function that takes place when the button is pressed
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Bring All(Bannable if Caught Dont Use It With Silent Aim)",
+   Callback = function()
+       local currPlayer = game:GetService("Players").LocalPlayer
+    local servPlayer = game:GetService("Players")
+    
+    local teams = game:GetService("Teams")
+    
+    function isSameTeam(player)
+        if player.team ~= currPlayer.team and player.team ~= teams["Neutral"] then
+            return false
+        else
+            return true
+        end
+    end
+    
+    while task.wait() do
+    for _, v in next, servPlayer:GetPlayers() do
+        if v ~= currPlayer and not isSameTeam(v) then
+            print(v)
+            v.Character.HumanoidRootPart.CFrame = currPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(2.2,0.5,-6)
+        end
+    end
+    end-- The function that takes place when the button is pressed
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Esp Enemies",
+   Callback = function()
+       local currPlayer = game:GetService("Players").LocalPlayer
+    local servPlayer = game:GetService("Players")
+    local RunService = game:GetService("RunService")
+    local teams = game:GetService("Teams")
+    
+    
+    local function numberRound(n)
+        return math.floor(tonumber(n) + 0.5)
+    end
+    
+    function isSameTeam(player)
+        if player.team ~= currPlayer.team and player.team ~= teams["Neutral"] then
+            return false
+        else
+            return true
+        end
+    end
+    
+    function isDead(player)
+        if
+            player == nil or player.Character == nil or player.Character:FindFirstChildWhichIsA("Humanoid") == nil or
+                player.Character.Humanoid.Health <= 0
+         then
+            return true
+        else
+            return false
+        end
+    end
+    
+    function getEquippedWeapon(player)
+        local char = player.Character
+        local weapon = char and char:FindFirstChildWhichIsA("Tool")
+    
+        if weapon ~= nil then
+            return weapon.Name
+        else
+            return "Holstered"
+        end
+    end
+    
+    function doESP()
+        for _, v in next, servPlayer:GetPlayers() do
+            if v ~= currPlayer and not isSameTeam(v) and not isDead(v) then
+                for _, k in next, v.Character:GetChildren() do
+                    if not isSameTeam(v) and not isDead(v) and k:IsA("BasePart") and not k:FindFirstChild("dohmESP") then
+                        local dohmESP = Instance.new("BoxHandleAdornment", k)
+                        dohmESP.Name = "dohmESP"
+                        dohmESP.AlwaysOnTop = true
+                        dohmESP.ZIndex = 10
+                        dohmESP.Size = k.Size
+                        dohmESP.Adornee = k
+                        dohmESP.Transparency = 0.7
+                        dohmESP.Color3 = Color3.new(1, 0, 0)
+                    end
+                    if not isDead(v) and not v.Character.Head:FindFirstChild("dohmESPTag") then
+                        local dohmESPTag = Instance.new("BillboardGui", v.Character.Head)
+                        dohmESPTag.Name = "dohmESPTag"
+                        dohmESPTag.Size = UDim2.new(1, 200, 1, 30)
+                        dohmESPTag.Adornee = v.Character.Head
+                        dohmESPTag.AlwaysOnTop = true
+    
+                        local topTag = Instance.new("TextLabel", dohmESPTag)
+                        topTag.TextWrapped = true
+                        topTag.Text =
+                            (v.Name ..
+                            " | " ..
+                                numberRound((currPlayer.Character.Head.Position - v.Character.Head.Position).Magnitude / 3) ..
+                                    "m" .. " | " .. getEquippedWeapon(v))
+                        topTag.Size = UDim2.new(1, 0, 1, 0)
+                        topTag.TextYAlignment = "Top"
+                        topTag.TextColor3 = Color3.new(1, 1, 1)
+                        topTag.BackgroundTransparency = 1
+                    else
+                        v.Character.Head.dohmESPTag.TextLabel.Text =
+                            (v.Name ..
+                            " | " ..
+                                numberRound((currPlayer.Character.Head.Position - v.Character.Head.Position).Magnitude / 3) ..
+                                    "m" .. " | " .. getEquippedWeapon(v))
+                    end
+                end
+            end
+        end
+    end
+    
+    RunService.Stepped:Connect(function()
+    doESP()
+    end
+    )
+   -- The function that takes place when the button is pressed
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "TriggerBot[Works]",
+   Callback = function()
+       local currPlayer = game:GetService('Players').LocalPlayer
+    local servPlayer = game:GetService('Players')
+    local currPlayerCharacter = currPlayer.Character or currPlayer.CharacterAdded:wait()
+    local currMouse = currPlayer:GetMouse()
+    local currCamera = game:GetService("Workspace").CurrentCamera
+
+    local RunService = game:GetService("RunService")
+
+
+    function trigBot()
+        local ScreenPoint = currCamera:ScreenPointToRay(currMouse.X, currMouse.Y)
+        local Ray = Ray.new(ScreenPoint.Origin, ScreenPoint.Direction * 9999)
+        local Target, Position = workspace:FindPartOnRayWithIgnoreList(Ray, {currPlayerCharacter,workspace.CurrentCamera})
+        if Target and Position and servPlayer:GetPlayerFromCharacter(Target.Parent) and Target.Parent.Humanoid.Health > 0 or Target and Position and servPlayer:GetPlayerFromCharacter(Target.Parent.Parent) and Target.Parent.Parent.Humanoid.Health > 0 then
+            local currTarget = servPlayer:GetPlayerFromCharacter(Target.Parent) or servPlayer:GetPlayerFromCharacter(Target.Parent.Parent)
+            if currTarget.Team ~= currPlayer.Team and currTarget ~= currPlayer then
+                mouse1click()
+            end
+        end
+    end
+
+    RunService.Stepped:Connect(function()
+    trigBot()
+    end)
+   -- The function that takes place when the button is pressed
+   end,
+})
+
+
+local Tab = Window:CreateTab("teleport", 4483362458) -- Title, Image
+ local Button = Tab:CreateButton({
+   Name = "Enabled It Before teleporting After Enabling Reset",
+   Callback = function()
+   game.Players.LocalPlayer.Character.Humanoid:SetStateEnabled(15,false)
+   -- The function that takes place when the button is pressed
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Teleport To RedFlag[Cupids Kingdom]",
+   Callback = function()
+   
+---red
+local teleport_table = {
+    location1 = Vector3.new(-427.032104, 64.0736084, 132.304398, 1, 0, 0, 0, 1, 0, 0, 0, 1), -- your desired position
+}
+
+local tween_s = game:GetService('TweenService')
+local tweeninfo = TweenInfo.new(6,Enum.EasingStyle.Linear)
+
+local lp = game.Players.LocalPlayer
+
+function bypass_teleport(v)
+    if lp.Character and 
+    lp.Character:FindFirstChild('HumanoidRootPart') then
+        local cf = CFrame.new(v)
+        local a = tween_s:Create(lp.Character.HumanoidRootPart,tweeninfo,{CFrame=cf})
+        a:Play()
+        -- a.Completed:Wait()
+        -- print('Teleporting Done!')
+    end
+end
+
+bypass_teleport(teleport_table.location1)
+ -- The function that takes place when the button is pressed
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Teleport To BlueFlag[Cupids*s Kingdom]",
+   Callback = function()
+   ---blu
+---blue
+
+local teleport_table = {
+    location1 = Vector3.new(-427.743286, 60.884613, 41.7610626, 1, 0, 0, 0, 1, 0, 0, 0, 1), -- your desired position
+}
+
+local tween_s = game:GetService('TweenService')
+local tweeninfo = TweenInfo.new(6,Enum.EasingStyle.Linear)
+
+local lp = game.Players.LocalPlayer
+
+function bypass_teleport(v)
+    if lp.Character and 
+    lp.Character:FindFirstChild('HumanoidRootPart') then
+        local cf = CFrame.new(v)
+        local a = tween_s:Create(lp.Character.HumanoidRootPart,tweeninfo,{CFrame=cf})
+        a:Play()
+        -- a.Completed:Wait()
+        -- print('Teleporting Done!')
+    end
+end
+
+bypass_teleport(teleport_table.location1)
+
+
+
+   -- The function that takes place when the button is pressed
+   end,
+})
+
+
+local Button = Tab:CreateButton({
+   Name = "Teleport To BlueFlag[Castle]",
+   Callback = function()
+   ---blue
+
+local teleport_table = {
+    location1 = Vector3.new(-127.934746, 69.6576691, 163.962494, 0, 0, 1, 0, 1, -0, -1, 0, 0), -- your desired position
+}
+
+local tween_s = game:GetService('TweenService')
+local tweeninfo = TweenInfo.new(6,Enum.EasingStyle.Linear)
+
+local lp = game.Players.LocalPlayer
+
+function bypass_teleport(v)
+    if lp.Character and 
+    lp.Character:FindFirstChild('HumanoidRootPart') then
+        local cf = CFrame.new(v)
+        local a = tween_s:Create(lp.Character.HumanoidRootPart,tweeninfo,{CFrame=cf})
+        a:Play()
+        -- a.Completed:Wait()
+        -- print('Teleporting Done!')
+    end
+end
+
+bypass_teleport(teleport_table.location1)
+
+   -- The function that takes place when the button is pressed
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Teleport To RedFlag[Castle]",
+   Callback = function()
+   ---blue
+
+local teleport_table = {
+    location1 = Vector3.new(-138.40094, 50.147995, 121.628128, -1.1920929e-07, 0, -1.00000012, 0, 1, 0, 1.00000012, 0, -1.1920929e-07), -- your desired position
+}
+
+local tween_s = game:GetService('TweenService')
+local tweeninfo = TweenInfo.new(6,Enum.EasingStyle.Linear)
+
+local lp = game.Players.LocalPlayer
+
+function bypass_teleport(v)
+    if lp.Character and 
+    lp.Character:FindFirstChild('HumanoidRootPart') then
+        local cf = CFrame.new(v)
+        local a = tween_s:Create(lp.Character.HumanoidRootPart,tweeninfo,{CFrame=cf})
+        a:Play()
+        -- a.Completed:Wait()
+        -- print('Teleporting Done!')
+    end
+end
+
+bypass_teleport(teleport_table.location1)
+
+   -- The function that takes place when the button is pressed
+   end,
+})
+
+
+local Button = Tab:CreateButton({
+   Name = "Teleport To BlueFlag[Sci-fi]",
+   Callback = function()
+   ---blue
+
+local teleport_table = {
+    location1 = Vector3.new(519.91626, 35.5659943, -104.162514, 1, 0, 0, 0, 1, 0, 0, 0, 1), -- your desired position
+}
+
+local tween_s = game:GetService('TweenService')
+local tweeninfo = TweenInfo.new(6,Enum.EasingStyle.Linear)
+
+local lp = game.Players.LocalPlayer
+
+function bypass_teleport(v)
+    if lp.Character and 
+    lp.Character:FindFirstChild('HumanoidRootPart') then
+        local cf = CFrame.new(v)
+        local a = tween_s:Create(lp.Character.HumanoidRootPart,tweeninfo,{CFrame=cf})
+        a:Play()
+        -- a.Completed:Wait()
+        -- print('Teleporting Done!')
+    end
+end
+
+bypass_teleport(teleport_table.location1)
+
+   -- The function that takes place when the button is pressed
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Teleport To RedFlag[Sci Fi]",
+   Callback = function()
+   ---blue
+
+local teleport_table = {
+    location1 = Vector3.new(519.618164, 35.5659943, 190.799332, 1, 0, 0, 0, 1, 0, 0, 0, 1), -- your desired position
+}
+
+local tween_s = game:GetService('TweenService')
+local tweeninfo = TweenInfo.new(6,Enum.EasingStyle.Linear)
+
+local lp = game.Players.LocalPlayer
+
+function bypass_teleport(v)
+    if lp.Character and 
+    lp.Character:FindFirstChild('HumanoidRootPart') then
+        local cf = CFrame.new(v)
+        local a = tween_s:Create(lp.Character.HumanoidRootPart,tweeninfo,{CFrame=cf})
+        a:Play()
+        -- a.Completed:Wait()
+        -- print('Teleporting Done!')
+    end
+end
+
+bypass_teleport(teleport_table.location1)
+
+   -- The function that takes place when the button is pressed
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Teleport To BlueFlag[Deset]",
+   Callback = function()
+   ---blue
+
+local teleport_table = {
+    location1 = Vector3.new(-567.800354, 93.3452759, 1016.22217, 1, 0, 0, 0, 1, 0, 0, 0, 1), -- your desired position
+}
+
+local tween_s = game:GetService('TweenService')
+local tweeninfo = TweenInfo.new(6,Enum.EasingStyle.Linear)
+
+local lp = game.Players.LocalPlayer
+
+function bypass_teleport(v)
+    if lp.Character and 
+    lp.Character:FindFirstChild('HumanoidRootPart') then
+        local cf = CFrame.new(v)
+        local a = tween_s:Create(lp.Character.HumanoidRootPart,tweeninfo,{CFrame=cf})
+        a:Play()
+        -- a.Completed:Wait()
+        -- print('Teleporting Done!')
+    end
+end
+
+bypass_teleport(teleport_table.location1)
+
+   -- The function that takes place when the button is pressed
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Teleport To RedFlag[Deset",
+   Callback = function()
+   ---blue
+
+local teleport_table = {
+    location1 = Vector3.new(-560.840637, 90.5562744, 1147.18372, 0, 0, -1, 0, 1, 0, 1, 0, 0), -- your desired position
+}
+
+local tween_s = game:GetService('TweenService')
+local tweeninfo = TweenInfo.new(6,Enum.EasingStyle.Linear)
+
+local lp = game.Players.LocalPlayer
+
+function bypass_teleport(v)
+    if lp.Character and 
+    lp.Character:FindFirstChild('HumanoidRootPart') then
+        local cf = CFrame.new(v)
+        local a = tween_s:Create(lp.Character.HumanoidRootPart,tweeninfo,{CFrame=cf})
+        a:Play()
+        -- a.Completed:Wait()
+        -- print('Teleporting Done!')
+    end
+end
+
+bypass_teleport(teleport_table.location1)
+
+   -- The function that takes place when the button is pressed
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Teleport To BlueFlag[Paintballs Arena]",
+   Callback = function()
+   ---blue
+
+local teleport_table = {
+    location1 = Vector3.new(184.819717, 27.0589924, -34.5204773, -1, 0, 0, 0, 1, 0, 0, 0, -1), -- your desired position
+}
+
+local tween_s = game:GetService('TweenService')
+local tweeninfo = TweenInfo.new(15,Enum.EasingStyle.Linear)
+
+local lp = game.Players.LocalPlayer
+
+function bypass_teleport(v)
+    if lp.Character and 
+    lp.Character:FindFirstChild('HumanoidRootPart') then
+        local cf = CFrame.new(v)
+        local a = tween_s:Create(lp.Character.HumanoidRootPart,tweeninfo,{CFrame=cf})
+        a:Play()
+        -- a.Completed:Wait()
+        -- print('Teleporting Done!')
+    end
+end
+
+bypass_teleport(teleport_table.location1)
+
+   -- The function that takes place when the button is pressed
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Teleport To RedFlag[PaintBalls Arena]",
+   Callback = function()
+   ---blue
+
+local teleport_table = {
+    location1 = Vector3.new(184.674164, 27.0589924, 410.736725, 1, 0, 0, 0, 1, 0, 0, 0, 1), -- your desired position
+}
+
+local tween_s = game:GetService('TweenService')
+local tweeninfo = TweenInfo.new(15,Enum.EasingStyle.Linear)
+
+local lp = game.Players.LocalPlayer
+
+function bypass_teleport(v)
+    if lp.Character and 
+    lp.Character:FindFirstChild('HumanoidRootPart') then
+        local cf = CFrame.new(v)
+        local a = tween_s:Create(lp.Character.HumanoidRootPart,tweeninfo,{CFrame=cf})
+        a:Play()
+        -- a.Completed:Wait()
+        -- print('Teleporting Done!')
+    end
+end
+
+bypass_teleport(teleport_table.location1)
+   -- The function that takes place when the button is pressed
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Teleport To BlueFlag[Factory]",
+   Callback = function()
+   ---blue
+
+local teleport_table = {
+    location1 = Vector3.new(-359.644714, 165.891998, -283.075531, 1, 0, 0, 0, 1, 0, 0, 0, 1), -- your desired position
+}
+
+local tween_s = game:GetService('TweenService')
+local tweeninfo = TweenInfo.new(15,Enum.EasingStyle.Linear)
+
+local lp = game.Players.LocalPlayer
+
+function bypass_teleport(v)
+    if lp.Character and 
+    lp.Character:FindFirstChild('HumanoidRootPart') then
+        local cf = CFrame.new(v)
+        local a = tween_s:Create(lp.Character.HumanoidRootPart,tweeninfo,{CFrame=cf})
+        a:Play()
+        -- a.Completed:Wait()
+        -- print('Teleporting Done!')
+    end
+end
+
+bypass_teleport(teleport_table.location1)
+
+   -- The function that takes place when the button is pressed
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Teleport To RedFlag[Factory]",
+   Callback = function()
+   ---blue
+
+local teleport_table = {
+    location1 = Vector3.new(-360.648987, 162.703003, 262.286011, 0, 0, -1, 0, 1, 0, 1, 0, 0), -- your desired position
+}
+
+local tween_s = game:GetService('TweenService')
+local tweeninfo = TweenInfo.new(15,Enum.EasingStyle.Linear)
+
+local lp = game.Players.LocalPlayer
+
+function bypass_teleport(v)
+    if lp.Character and 
+    lp.Character:FindFirstChild('HumanoidRootPart') then
+        local cf = CFrame.new(v)
+        local a = tween_s:Create(lp.Character.HumanoidRootPart,tweeninfo,{CFrame=cf})
+        a:Play()
+        -- a.Completed:Wait()
+        -- print('Teleporting Done!')
+    end
+end
+
+bypass_teleport(teleport_table.location1)
+
+   -- The function that takes place when the button is pressed
+   end,
+})
